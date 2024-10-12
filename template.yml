@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources: 
+  EC2Instance:    
+    Type: 'AWS::EC2::Instance'
+    Properties: 
+      ImageId: "ami-0fff1b9a61dec8a5f"
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - sg-0b450a22b90f0ba37
