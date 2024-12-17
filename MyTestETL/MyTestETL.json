@@ -1,0 +1,41 @@
+{
+  "name" : "MyTestETL",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::601824996201:role/AWSGlueServiceRole-smallfiles",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-601824996201-us-east-1/scripts/MyTestETL.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-601824996201-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-601824996201-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1734441678867\":{\"DropFields\":{\"Inputs\":[\"node-1734441674448\"],\"Name\":\"Drop Fields\",\"Paths\":[[\"logFiles\"],[\"previousDigestSignature\"],[\"previousDigestHashAlgorithm\"],[\"previousDigestHashValue\"],[\"previousDigestS3Object\"],[\"previousDigestS3Bucket\"],[\"oldestEventTime\"],[\"newestEventTime\"],[\"digestSignatureAlgorithm\"],[\"digestPublicKeyFingerprint\"],[\"digestS3Object\"],[\"digestS3Bucket\"]]}},\"node-1734441674448\":{\"S3JsonSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://aws-cloudtrail-logs-601824996201-d95aab64/AWSLogs/601824996201/CloudTrail-Digest/ap-northeast-1/2024/09/10/601824996201_CloudTrail-Digest_ap-northeast-1_mda-events_eu-west-1_20240910T223956Z.json.gz\"},\"Exclusions\":[],\"JsonPath\":\"\",\"Multiline\":false,\"Name\":\"Amazon S3\",\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"awsAccountId\",\"Type\":\"string\"},{\"Name\":\"digestStartTime\",\"Type\":\"string\"},{\"Name\":\"digestEndTime\",\"Type\":\"string\"},{\"Name\":\"digestS3Bucket\",\"Type\":\"string\"},{\"Name\":\"digestS3Object\",\"Type\":\"string\"},{\"Name\":\"digestPublicKeyFingerprint\",\"Type\":\"string\"},{\"Name\":\"digestSignatureAlgorithm\",\"Type\":\"string\"},{\"Name\":\"newestEventTime\",\"Type\":\"null\"},{\"Name\":\"oldestEventTime\",\"Type\":\"null\"},{\"Name\":\"previousDigestS3Bucket\",\"Type\":\"null\"},{\"Name\":\"previousDigestS3Object\",\"Type\":\"null\"},{\"Name\":\"previousDigestHashValue\",\"Type\":\"null\"},{\"Name\":\"previousDigestHashAlgorithm\",\"Type\":\"null\"},{\"Name\":\"previousDigestSignature\",\"Type\":\"null\"},{\"Name\":\"logFiles\",\"Type\":\"string\"}]}],\"Paths\":[\"s3://aws-cloudtrail-logs-601824996201-d95aab64\"],\"Recurse\":true}},\"node-1734441683016\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1734441472025\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1734441678867\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://jrtn-test-bucket\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "test-repo",
+    "branch" : "dev",
+    "folder" : "MyTestETL"
+  }
+}
