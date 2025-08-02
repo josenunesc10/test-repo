@@ -46,6 +46,13 @@ public class GameController {
 
     @PostMapping("/game")
     public String makeGuess(String guess, int attempts, Model model) {
+        if (guess == null || guess.trim().isEmpty()) {
+            model.addAttribute("message", "Please enter a valid guess");
+            model.addAttribute("attempts", attempts);
+            model.addAttribute("status", GameStatus.INPROGRESS);
+            return "game";
+        }
+        
         log.info("Guess: " + guess + " Attempts: " + attempts);
         String result = word.getInfo(guess);
         log.info("Result: " + result);
@@ -77,8 +84,8 @@ public class GameController {
         return (attempts != null) ? attempts : 0;
     }
 
-    private int addAttempt(@Nullable Integer attempt) {
-        return attempt + 1;
+    private int addAttempt(Integer attempt) {
+        return (attempt != null) ? attempt + 1 : 1;
     }
 
 }
