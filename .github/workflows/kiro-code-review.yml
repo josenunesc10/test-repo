@@ -2,7 +2,7 @@ name: Kiro Code Review
 
 on:
     push:
-        branches: [ main ]
+        branches: [ master ]
 
 jobs:
     code-review:
