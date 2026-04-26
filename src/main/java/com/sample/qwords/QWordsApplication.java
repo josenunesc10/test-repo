@@ -20,6 +20,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableSwagger2
 public class QWordsApplication {
+	// This is the application entry point
 	public static void main(String[] args) {
 		SpringApplication.run(QWordsApplication.class, args);
 	}
